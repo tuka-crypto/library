@@ -9,4 +9,9 @@ class Author extends Model
 {
     /** @use HasFactory<\Database\Factories\AuthorFactory> */
     use HasFactory;
+    protected $fillable = ['name'];
+    public $timestamps=false;
+    public function books(){
+        return $this->belongsToMany(Book::class);
+    }
 }
