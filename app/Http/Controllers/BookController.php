@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use ResponseHelper;
 
 class BookController extends Controller
 {
@@ -13,7 +14,9 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books=Book::all();
+        
+
     }
 
     /**

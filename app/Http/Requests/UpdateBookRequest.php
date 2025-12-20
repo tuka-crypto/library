@@ -22,7 +22,13 @@ class UpdateBookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'ISBN'=>'required|string|max:13|unique:books,ISBN,'.$this->route('book')->ISBN,
+            'title'=>'required|string|max:50|unique:books',
+            'price'=>'numeric|min:0',
+            'mortgage'=>'numeric|min:0',
+            'authorship_date'=>'nullable|date',
+            'category_id'=>'nullable|exists:categories,id',
+            'cover'=>'nullable|image|max:2048'
         ];
     }
 }
