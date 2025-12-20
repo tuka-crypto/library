@@ -2,17 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\Author;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AuthorSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Author::factory(10)->create();
+        $user = ['name' => 'test' , 'email' => 'tuka@.com' , 'password' => '123'];
+        User::create($user);
     }
 }
