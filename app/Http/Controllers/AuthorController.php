@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Http\Requests\StoreAuthorRequest;
 use App\Http\Requests\UpdateAuthorRequest;
-use ResponseHelper;
+use App\Helpers\ResponseHelper;
 
 class AuthorController extends Controller
 {

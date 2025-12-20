@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use ResponseHelper;
+use App\Helpers\ResponseHelper;
 
 class AuthController extends Controller
 {
@@ -15,19 +15,21 @@ class AuthController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:50',
             'email' => 'required|email|max:175|unique:users',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
+            'gender'=>'required|in:M,F',
+            'phone'=>'required|digits:10',
+            'avatar'=>'required|image|mimes:jpeg,jpg,png|max:2048'
         ]);
-
         $user = User::create(
             $validated
         );
-
+        $user->customer()->create([
+            'gender'=>$validated['gender'],
+            'phone'=>$validated['phone'],
+            'avatar'=>$validated['avatar']??'download.png'
+        ]);
         return ResponseHelper::success(
-            "user created successfully",
-            [
-                'user' => $user,
-                'token' => $user->createToken("Api Token")->plainTextToken
-            ]
+            [ 'user' => $user->load('customer'),'token' => $user->createToken("Api Token")->plainTextToken], "user created successfully",
         );
     }
     function login(Request $request)

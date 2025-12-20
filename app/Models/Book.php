@@ -9,15 +9,15 @@ class Book extends Model
 {
     /** @use HasFactory<\Database\Factories\BookFactory> */
     use HasFactory;
-    protected $primaryKey = 'ISBN';
+    protected $primaryKey = "ISBN";
     public $incrementing =false;
     protected $fillable = [
-        'ISBN','title','price','mortgage','authership_date','category_id','cover'
+        'ISBN','title','price','mortgage','authership_date','category_id'
     ];
     public function category(){
         return $this->belongsTo(Category::class);
     }
-    public function authers(){
+    public function authors(){
         return $this->belongsToMany(Author::class);
     }
     public function customers(){

@@ -8,7 +8,7 @@ use App\Http\Requests\UpdateBookRequest;
 use App\Http\Resources\BookResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use ResponseHelper;
+use App\Helpers\ResponseHelper;
 
 class BookController extends Controller
 {
